@@ -1,4 +1,4 @@
-import 'package:alindor_brainai/src/features/login/presentation/login_page.dart';
+import 'package:alindor_brainai/src/features/auth/presentation/login_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
