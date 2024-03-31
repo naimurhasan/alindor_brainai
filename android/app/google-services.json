@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "544454413149",
+    "project_id": "naimur-firebase",
+    "storage_bucket": "naimur-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544454413149:android:7b50b9c8ae134abfcb36b4",
+        "android_client_info": {
+          "package_name": "com.example.alindor_brainai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcLDDpoDeTvml5ZxQ5VpMKMKmooBk7dNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
