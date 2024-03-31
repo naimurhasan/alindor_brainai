@@ -30,7 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  # ui
+  font_awesome_flutter: ^10.7.0
   # firebase
   firebase_core: ^2.27.2
   firebase_auth: ^4.18.0
@@ -48,6 +49,7 @@ dependencies:
   dio: ^5.4.2+1
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
+  
   
 
 dev_dependencies:

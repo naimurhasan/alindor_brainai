@@ -1,7 +1,8 @@
 import 'package:alindor_brainai/src/features/auth/domain/user_remote_datastore.dart';
+import 'package:alindor_brainai/src/features/auth/domain/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class UserRepositoryImpl implements UserRemoteDatastore{
+class UserRepositoryImpl implements UserRepository{
   
   final UserRemoteDatastore userRemoteDatastore;
 

@@ -1,48 +1,46 @@
-
 import 'package:alindor_brainai/src/core/utils/constants.dart';
+import 'package:alindor_brainai/src/core/widgets/app_button.dart';
+import 'package:alindor_brainai/src/features/auth/presentation/bloc/authentication_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key,});
+  const LoginPage({
+    super.key,
+  });
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text(AppConstants.name),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      backgroundColor: AppColors.scaffoldBG,
+      body: Padding(
+        padding: const EdgeInsets.all(AppSizes.padding),
+        child: Center(
+          child: AppButton(
+            onPressed: () {
+              context.read<AuthenticationBloc>().add(SignInWithGoogle());
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const FaIcon(FontAwesomeIcons.google, color: AppColors.white,),
+                const SizedBox(width: AppSizes.padding,),
+                Text(
+                  "Google Login",
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: AppColors.white,
+                      ),
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }

@@ -19,6 +19,8 @@ class AppColors {
   static const Color grey = Color(0xFF828290);
   static const Color primary = Color(0xFF5D5CFF);
   static const Color black = Color(0xFF000000);
+  static const Color scaffoldBG = Color(0xFF00071A);
+  static const Color btnBorder = Color(0xFF436F88);
 }
 
 class AppSizes {
