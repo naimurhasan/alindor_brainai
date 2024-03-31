@@ -1,4 +1,5 @@
 import 'package:alindor_brainai/src/application/routes/app_routes.dart';
+import 'package:alindor_brainai/src/core/theme/app_theme.dart';
 import 'package:alindor_brainai/src/features/auth/domain/user_repository.dart';
 import 'package:alindor_brainai/src/features/auth/presentation/bloc/authentication_bloc.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +20,7 @@ class App extends StatelessWidget {
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: appTheme,
       ),
     );
   }

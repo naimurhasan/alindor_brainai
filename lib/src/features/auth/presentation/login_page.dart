@@ -4,6 +4,7 @@ import 'package:alindor_brainai/src/features/auth/presentation/bloc/authenticati
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({
@@ -17,31 +18,65 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.scaffoldBG,
-      body: Padding(
-        padding: const EdgeInsets.all(AppSizes.padding),
-        child: Center(
-          child: AppButton(
-            onPressed: () {
-              context.read<AuthenticationBloc>().add(SignInWithGoogle());
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const FaIcon(FontAwesomeIcons.google, color: AppColors.white,),
-                const SizedBox(width: AppSizes.padding,),
-                Text(
-                  "Google Login",
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.white,
+    return BlocConsumer<AuthenticationBloc, AuthenticationState>(
+      listener: (context, state) {
+        if (state is AuthenticationSuccessState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Welcome ${state.user.displayName}"),
+            ),
+          );
+          context.pushReplacementNamed(Routes.indRecord);
+        } else if (state is AuthenticationFailureState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMessage),
+            ),
+          );
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: AppColors.scaffoldBG,
+          body: Padding(
+            padding: const EdgeInsets.all(AppSizes.padding),
+            child: Center(
+              child: state is AuthenticationLoadingState
+                  ? const CircularProgressIndicator(
+                      color: AppColors.btnBorder,
+                    )
+                  : AppButton(
+                      onPressed: () {
+                        context
+                            .read<AuthenticationBloc>()
+                            .add(SignInWithGoogle());
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const FaIcon(
+                            FontAwesomeIcons.google,
+                            color: AppColors.white,
+                          ),
+                          const SizedBox(
+                            width: AppSizes.padding,
+                          ),
+                          Text(
+                            "Google Login",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  color: AppColors.white,
+                                ),
+                          ),
+                        ],
                       ),
-                ),
-              ],
+                    ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
