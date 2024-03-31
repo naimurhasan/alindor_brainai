@@ -2,6 +2,11 @@
 
 A new Flutter project.
 
+# SDK Versions
+- Flutter: 3.19.3
+- Java: 20.0.2
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
