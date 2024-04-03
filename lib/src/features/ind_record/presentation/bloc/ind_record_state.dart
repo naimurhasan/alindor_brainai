@@ -11,6 +11,15 @@ class IndRecordLoadingState extends IndRecordState {}
 class IndRecordRecordingState extends IndRecordState {}
 
 class IndRecordSuccessState extends IndRecordState {
+  final String filePath;
   final String message;
-  const IndRecordSuccessState(this.message);
+  const IndRecordSuccessState({
+    required this.message,
+    required this.filePath,
+  });
+}
+
+class IndRecordErrorState extends IndRecordState {
+  final String message;
+  const IndRecordErrorState(this.message);
 }

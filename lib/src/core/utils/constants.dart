@@ -21,6 +21,7 @@ class AppColors {
   static const Color black = Color(0xFF000000);
   static const Color scaffoldBG = Color(0xFF00071A);
   static const Color btnBorder = Color(0xFF436F88);
+  static const Color negative = Color(0xFFCF142B);
 }
 
 class AppSizes {

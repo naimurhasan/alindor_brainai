@@ -49,7 +49,8 @@ dependencies:
   dio: ^5.4.2+1
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
-  
+  # record audio
+  audio_waveforms: ^1.0.5
   
 
 dev_dependencies:
