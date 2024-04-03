@@ -1,18 +1,21 @@
 import 'dart:async';
 
 import 'package:alindor_brainai/src/core/utils/logger.dart';
+import 'package:alindor_brainai/src/features/ind_record/domain/ind_record_repository.dart';
 import 'package:audio_waveforms/audio_waveforms.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'ind_record_event.dart';
 part 'ind_record_state.dart';
 
 class IndRecordBloc extends Bloc<IndRecordEvent, IndRecordState> {
-  IndRecordBloc() : super(IndRecordInitialState()) {
+  IndRecordBloc(this.repository) : super(IndRecordInitialState()) {
     on<IndRecordStartEvent>(_recordStart);
     on<IndRecordStopEvent>(_recordStop);
   }
 
+  final IndRecordRepository repository;
   late RecorderController controller;
 
   FutureOr<void> _recordStart(
@@ -41,11 +44,35 @@ class IndRecordBloc extends Bloc<IndRecordEvent, IndRecordState> {
       return;
     }
 
-    Logger.log(message: "IND RECORD STOP $path");
+    
     emit(IndRecordSuccessState(
-      message: "The file is saved at $path",
-      filePath: path,
-    ));
+        message: "The file is saved at $path",
+        filePath: path,
+        isGeneratingText: true));
+
+    try {
+      final text = await repository.speechToText(path);
+
+      emit(IndRecordSuccessState(
+        message: text,
+        filePath: path,
+        isGeneratingText: false,
+        text: text,
+      ));
+      
+    } on DioException catch (e, t) {
+      emit(const IndRecordErrorState("Error in generating text"));
+      Logger.log(
+        message: "Error in speech to text conversion",
+        stackTrace: t,
+      );
+    } catch (e, t) {
+      emit(const IndRecordErrorState("Error in generating text"));
+      Logger.log(
+        message: "Error in generating text",
+        stackTrace: t,
+      );
+    }
   }
 
   @override

@@ -12,6 +12,8 @@ class AppConstants {
   static const String author = 'Naimur Hasan';
   static const String authorEmail = 'naimurhasanrwd@gmail.com';
   static const String baseUrl = '';
+  static const String deepGramApiKey = 'e18672c352e6848d27186671e711e9403e9f1bcc';
+  
 }
 
 class AppColors {

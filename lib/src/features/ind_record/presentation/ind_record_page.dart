@@ -1,10 +1,10 @@
 import 'package:alindor_brainai/src/core/utils/constants.dart';
+import 'package:alindor_brainai/src/di_module.dart';
 import 'package:alindor_brainai/src/features/auth/presentation/bloc/authentication_bloc.dart';
+import 'package:alindor_brainai/src/features/ind_record/domain/ind_record_repository.dart';
 import 'package:alindor_brainai/src/features/ind_record/presentation/bloc/ind_record_bloc.dart';
 import 'package:alindor_brainai/src/features/ind_record/presentation/widgets/recorded_audio_player.dart';
-import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,8 +14,10 @@ class IndRecordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<IndRecordBloc>(
-      create: (context) => IndRecordBloc(),
-      child: IndRecordBody(),
+      create: (context) => IndRecordBloc(
+        di<IndRecordRepository>(),
+      ),
+      child: const IndRecordBody(),
     );
   }
 }
@@ -67,7 +69,6 @@ class IndRecordBody extends StatelessWidget {
   }
 }
 
-
 class RecordSuccessStateBody extends StatelessWidget {
   final IndRecordSuccessState state;
   const RecordSuccessStateBody(this.state, {super.key});
@@ -80,12 +81,29 @@ class RecordSuccessStateBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RecordedAudioPlayer(state.filePath),
-            const SizedBox(height: AppSizes.padding),
+            Container(
+              padding: const EdgeInsets.all(AppSizes.padding * 2),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+                border: Border.all(color: AppColors.btnBorder),
+              ),
+              child: Column(
+                children: [
+                  RecordedAudioPlayer(state.filePath),
+                  const SizedBox(height: AppSizes.padding),
+                  if (state.isGeneratingText)
+                    const CircularProgressIndicator()
+                  else
+                    Text(
+                      state.text,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-

@@ -13,9 +13,13 @@ class IndRecordRecordingState extends IndRecordState {}
 class IndRecordSuccessState extends IndRecordState {
   final String filePath;
   final String message;
+  final bool isGeneratingText;
+  final String text;
   const IndRecordSuccessState({
     required this.message,
     required this.filePath,
+    this.isGeneratingText = false,
+    this.text = "",
   });
 }
 

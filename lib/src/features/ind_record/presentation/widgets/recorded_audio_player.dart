@@ -1,29 +1,7 @@
 
 import 'package:alindor_brainai/src/core/utils/constants.dart';
-import 'package:alindor_brainai/src/features/ind_record/presentation/bloc/ind_record_bloc.dart';
 import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:flutter/material.dart';
-
-class RecordSuccessStateBody extends StatelessWidget {
-  final IndRecordSuccessState state;
-  const RecordSuccessStateBody(this.state, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(AppSizes.padding),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            RecordedAudioPlayer(state.filePath),
-            const SizedBox(height: AppSizes.padding),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class RecordedAudioPlayer extends StatefulWidget {
   final String filePath;
