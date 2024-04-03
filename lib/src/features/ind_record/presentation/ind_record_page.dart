@@ -61,8 +61,17 @@ class IndRecordBody extends StatelessWidget {
         ),
         body: state is IndRecordSuccessState
             ? RecordSuccessStateBody(state)
-            : const Center(
-                child: Text("Record Something!"),
+            : Center(
+                child: Text(
+                  state is IndRecordErrorState
+                      ? state.message
+                      : "Record Something!",
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: state is IndRecordErrorState
+                            ? AppColors.negative
+                            : null,
+                      ),
+                ),
               ),
       );
     });
@@ -91,16 +100,34 @@ class RecordSuccessStateBody extends StatelessWidget {
                 children: [
                   RecordedAudioPlayer(state.filePath),
                   const SizedBox(height: AppSizes.padding),
-                  if (state.isGeneratingText)
-                    const CircularProgressIndicator()
-                  else
+                  if (state.isGeneratingMessage) ...[
+                    const CircularProgressIndicator(),
+                    const SizedBox(height: AppSizes.padding),
                     Text(
-                      state.text,
+                      "Listening the audio...",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ] else
+                    Text(
+                      state.message,
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                 ],
               ),
             ),
+            const SizedBox(height: AppSizes.padding * 2),
+            if (state.isGeneratingAnalysis) ...[
+              const CircularProgressIndicator(),
+              const SizedBox(height: AppSizes.padding),
+              Text(
+                "Anylizing...",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ] else
+              Text(
+                state.textAnalysisResult?.fullSummary ?? "",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
           ],
         ),
       ),

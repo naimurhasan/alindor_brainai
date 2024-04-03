@@ -6,6 +6,8 @@ A new Flutter project.
 - Flutter: 3.19.3
 - Java: 20.0.2
 
+## NOTE
+- Use Env for api Key
 
 ## Getting Started
 

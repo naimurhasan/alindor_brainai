@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:alindor_brainai/src/core/utils/logger.dart';
+import 'package:alindor_brainai/src/features/ind_record/data/model/text_analyzed_result.dart';
 import 'package:alindor_brainai/src/features/ind_record/domain/ind_record_repository.dart';
 import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:dio/dio.dart';
@@ -44,11 +45,10 @@ class IndRecordBloc extends Bloc<IndRecordEvent, IndRecordState> {
       return;
     }
 
-    
     emit(IndRecordSuccessState(
         message: "The file is saved at $path",
         filePath: path,
-        isGeneratingText: true));
+        isGeneratingMessage: true));
 
     try {
       final text = await repository.speechToText(path);
@@ -56,23 +56,35 @@ class IndRecordBloc extends Bloc<IndRecordEvent, IndRecordState> {
       emit(IndRecordSuccessState(
         message: text,
         filePath: path,
-        isGeneratingText: false,
-        text: text,
+        isGeneratingMessage: false,
+        isGeneratingAnalysis: true,
       ));
-      
     } on DioException catch (e, t) {
       emit(const IndRecordErrorState("Error in generating text"));
       Logger.log(
-        message: "Error in speech to text conversion",
+        message: "Dio Error in speech to text conversion",
         stackTrace: t,
       );
+      return;
     } catch (e, t) {
       emit(const IndRecordErrorState("Error in generating text"));
       Logger.log(
         message: "Error in generating text",
         stackTrace: t,
       );
+      return;
     }
+
+    await Future.delayed(const Duration(seconds: 2));
+    emit((state as IndRecordSuccessState).copyWith(
+      isGeneratingAnalysis: false,
+      textAnalysisResult: TextAnalysisResult(
+        personalityTest: 5.0,
+        fullSummary: "fullSummary",
+        traits: [],
+        reflectingQuotes: [],
+      ),
+    ));
   }
 
   @override

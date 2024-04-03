@@ -25,7 +25,8 @@ class IndRecordDataStoreImpl implements IndRecordDataStore {
     );
 
     if (response.statusCode == 200) {
-      return response.data['results']["channels"]["alternatives"]["transcript"];
+      Logger.log(message: "indapi response ${response.data}");
+      return response.data['results']["channels"][0]["alternatives"][0]["transcript"];
     }else{
       Logger.log(message: "indapi error ${response.data}");
       throw Exception("Error in speech to text conversion");
