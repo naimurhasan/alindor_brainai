@@ -19,18 +19,17 @@ class AppButton extends StatelessWidget {
             color: AppColors.scaffoldBG,
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
-              color:  AppColors.btnBorder,
+              color: AppColors.btnBorder,
               width: 2.0,
             ),
             boxShadow: const [
-                    BoxShadow(
-                      color: AppColors.btnBorder,
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                      offset: Offset(0, 0),
-                    ),
-                  ]
-                ,
+              BoxShadow(
+                color: AppColors.btnBorder,
+                blurRadius: 10,
+                spreadRadius: 2,
+                offset: Offset(0, 0),
+              ),
+            ],
           ),
           child: child,
         ),
