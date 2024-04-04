@@ -8,11 +8,11 @@ part of 'trait_model.dart';
 
 _$TraitImpl _$$TraitImplFromJson(Map<String, dynamic> json) => _$TraitImpl(
       name: json['name'] as String,
-      percentage: (json['percentage'] as num).toDouble(),
+      score: json['score'] as int,
     );
 
 Map<String, dynamic> _$$TraitImplToJson(_$TraitImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'percentage': instance.percentage,
+      'score': instance.score,
     };

@@ -9,13 +9,13 @@ part of 'text_analyzed_result.dart';
 _$TextAnalysisResultImpl _$$TextAnalysisResultImplFromJson(
         Map<String, dynamic> json) =>
     _$TextAnalysisResultImpl(
-      tinyTitle: json['tinyTitle'] as String,
-      personalityTest: (json['personalityTest'] as num).toDouble(),
-      fullSummary: json['fullSummary'] as String,
+      tinyTitle: json['tiny_title'] as String,
+      personalityTest: (json['personality_test'] as num).toDouble(),
+      fullSummary: json['full_summary'] as String,
       traits: (json['traits'] as List<dynamic>)
           .map((e) => Trait.fromJson(e as Map<String, dynamic>))
           .toList(),
-      reflectingQuotes: (json['reflectingQuotes'] as List<dynamic>)
+      reflectingQuotes: (json['reflecting_quotes'] as List<dynamic>)
           .map((e) => ReflectingQuote.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -23,9 +23,9 @@ _$TextAnalysisResultImpl _$$TextAnalysisResultImplFromJson(
 Map<String, dynamic> _$$TextAnalysisResultImplToJson(
         _$TextAnalysisResultImpl instance) =>
     <String, dynamic>{
-      'tinyTitle': instance.tinyTitle,
-      'personalityTest': instance.personalityTest,
-      'fullSummary': instance.fullSummary,
+      'tiny_title': instance.tinyTitle,
+      'personality_test': instance.personalityTest,
+      'full_summary': instance.fullSummary,
       'traits': instance.traits,
-      'reflectingQuotes': instance.reflectingQuotes,
+      'reflecting_quotes': instance.reflectingQuotes,
     };

@@ -20,10 +20,14 @@ TextAnalysisResult _$TextAnalysisResultFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TextAnalysisResult {
+  @JsonKey(name: 'tiny_title')
   String get tinyTitle => throw _privateConstructorUsedError;
+  @JsonKey(name: 'personality_test')
   double get personalityTest => throw _privateConstructorUsedError;
+  @JsonKey(name: 'full_summary')
   String get fullSummary => throw _privateConstructorUsedError;
   List<Trait> get traits => throw _privateConstructorUsedError;
+  @JsonKey(name: 'reflecting_quotes')
   List<ReflectingQuote> get reflectingQuotes =>
       throw _privateConstructorUsedError;
 
@@ -40,10 +44,11 @@ abstract class $TextAnalysisResultCopyWith<$Res> {
       _$TextAnalysisResultCopyWithImpl<$Res, TextAnalysisResult>;
   @useResult
   $Res call(
-      {String tinyTitle,
-      double personalityTest,
-      String fullSummary,
+      {@JsonKey(name: 'tiny_title') String tinyTitle,
+      @JsonKey(name: 'personality_test') double personalityTest,
+      @JsonKey(name: 'full_summary') String fullSummary,
       List<Trait> traits,
+      @JsonKey(name: 'reflecting_quotes')
       List<ReflectingQuote> reflectingQuotes});
 }
 
@@ -100,10 +105,11 @@ abstract class _$$TextAnalysisResultImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String tinyTitle,
-      double personalityTest,
-      String fullSummary,
+      {@JsonKey(name: 'tiny_title') String tinyTitle,
+      @JsonKey(name: 'personality_test') double personalityTest,
+      @JsonKey(name: 'full_summary') String fullSummary,
       List<Trait> traits,
+      @JsonKey(name: 'reflecting_quotes')
       List<ReflectingQuote> reflectingQuotes});
 }
 
@@ -152,11 +158,12 @@ class __$$TextAnalysisResultImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TextAnalysisResultImpl implements _TextAnalysisResult {
-  _$TextAnalysisResultImpl(
-      {required this.tinyTitle,
-      required this.personalityTest,
-      required this.fullSummary,
+  const _$TextAnalysisResultImpl(
+      {@JsonKey(name: 'tiny_title') required this.tinyTitle,
+      @JsonKey(name: 'personality_test') required this.personalityTest,
+      @JsonKey(name: 'full_summary') required this.fullSummary,
       required final List<Trait> traits,
+      @JsonKey(name: 'reflecting_quotes')
       required final List<ReflectingQuote> reflectingQuotes})
       : _traits = traits,
         _reflectingQuotes = reflectingQuotes;
@@ -165,10 +172,13 @@ class _$TextAnalysisResultImpl implements _TextAnalysisResult {
       _$$TextAnalysisResultImplFromJson(json);
 
   @override
+  @JsonKey(name: 'tiny_title')
   final String tinyTitle;
   @override
+  @JsonKey(name: 'personality_test')
   final double personalityTest;
   @override
+  @JsonKey(name: 'full_summary')
   final String fullSummary;
   final List<Trait> _traits;
   @override
@@ -180,6 +190,7 @@ class _$TextAnalysisResultImpl implements _TextAnalysisResult {
 
   final List<ReflectingQuote> _reflectingQuotes;
   @override
+  @JsonKey(name: 'reflecting_quotes')
   List<ReflectingQuote> get reflectingQuotes {
     if (_reflectingQuotes is EqualUnmodifiableListView)
       return _reflectingQuotes;
@@ -234,26 +245,31 @@ class _$TextAnalysisResultImpl implements _TextAnalysisResult {
 }
 
 abstract class _TextAnalysisResult implements TextAnalysisResult {
-  factory _TextAnalysisResult(
-          {required final String tinyTitle,
-          required final double personalityTest,
-          required final String fullSummary,
-          required final List<Trait> traits,
-          required final List<ReflectingQuote> reflectingQuotes}) =
-      _$TextAnalysisResultImpl;
+  const factory _TextAnalysisResult(
+      {@JsonKey(name: 'tiny_title') required final String tinyTitle,
+      @JsonKey(name: 'personality_test') required final double personalityTest,
+      @JsonKey(name: 'full_summary') required final String fullSummary,
+      required final List<Trait> traits,
+      @JsonKey(name: 'reflecting_quotes')
+      required final List<ReflectingQuote>
+          reflectingQuotes}) = _$TextAnalysisResultImpl;
 
   factory _TextAnalysisResult.fromJson(Map<String, dynamic> json) =
       _$TextAnalysisResultImpl.fromJson;
 
   @override
+  @JsonKey(name: 'tiny_title')
   String get tinyTitle;
   @override
+  @JsonKey(name: 'personality_test')
   double get personalityTest;
   @override
+  @JsonKey(name: 'full_summary')
   String get fullSummary;
   @override
   List<Trait> get traits;
   @override
+  @JsonKey(name: 'reflecting_quotes')
   List<ReflectingQuote> get reflectingQuotes;
   @override
   @JsonKey(ignore: true)

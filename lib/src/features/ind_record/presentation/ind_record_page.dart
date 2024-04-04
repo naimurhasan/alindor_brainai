@@ -124,8 +124,9 @@ class RecordSuccessStateBody extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             ] else
+             state.textAnalysisResult == null ? SizedBox() :
               Text(
-                state.textAnalysisResult?.fullSummary ?? "",
+                state.textAnalysisResult?.toJson().toString() ?? "",
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
           ],

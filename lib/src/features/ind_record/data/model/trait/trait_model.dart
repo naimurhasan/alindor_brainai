@@ -8,7 +8,7 @@ class Trait with _$Trait {
 
   factory Trait({
     required String name,
-    required double percentage,
+    required int score,
   }) = _Trait;
 
   factory Trait.fromJson(Map<String, dynamic> json) => _$TraitFromJson(json);

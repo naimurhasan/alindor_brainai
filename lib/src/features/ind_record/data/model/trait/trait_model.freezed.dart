@@ -21,7 +21,7 @@ Trait _$TraitFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Trait {
   String get name => throw _privateConstructorUsedError;
-  double get percentage => throw _privateConstructorUsedError;
+  int get score => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +33,7 @@ abstract class $TraitCopyWith<$Res> {
   factory $TraitCopyWith(Trait value, $Res Function(Trait) then) =
       _$TraitCopyWithImpl<$Res, Trait>;
   @useResult
-  $Res call({String name, double percentage});
+  $Res call({String name, int score});
 }
 
 /// @nodoc
@@ -50,17 +50,17 @@ class _$TraitCopyWithImpl<$Res, $Val extends Trait>
   @override
   $Res call({
     Object? name = null,
-    Object? percentage = null,
+    Object? score = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      percentage: null == percentage
-          ? _value.percentage
-          : percentage // ignore: cast_nullable_to_non_nullable
-              as double,
+      score: null == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -72,7 +72,7 @@ abstract class _$$TraitImplCopyWith<$Res> implements $TraitCopyWith<$Res> {
       __$$TraitImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, double percentage});
+  $Res call({String name, int score});
 }
 
 /// @nodoc
@@ -87,17 +87,17 @@ class __$$TraitImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? percentage = null,
+    Object? score = null,
   }) {
     return _then(_$TraitImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      percentage: null == percentage
-          ? _value.percentage
-          : percentage // ignore: cast_nullable_to_non_nullable
-              as double,
+      score: null == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -105,7 +105,7 @@ class __$$TraitImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TraitImpl implements _Trait {
-  _$TraitImpl({required this.name, required this.percentage});
+  _$TraitImpl({required this.name, required this.score});
 
   factory _$TraitImpl.fromJson(Map<String, dynamic> json) =>
       _$$TraitImplFromJson(json);
@@ -113,11 +113,11 @@ class _$TraitImpl implements _Trait {
   @override
   final String name;
   @override
-  final double percentage;
+  final int score;
 
   @override
   String toString() {
-    return 'Trait(name: $name, percentage: $percentage)';
+    return 'Trait(name: $name, score: $score)';
   }
 
   @override
@@ -126,13 +126,12 @@ class _$TraitImpl implements _Trait {
         (other.runtimeType == runtimeType &&
             other is _$TraitImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.percentage, percentage) ||
-                other.percentage == percentage));
+            (identical(other.score, score) || other.score == score));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, percentage);
+  int get hashCode => Object.hash(runtimeType, name, score);
 
   @JsonKey(ignore: true)
   @override
@@ -149,16 +148,15 @@ class _$TraitImpl implements _Trait {
 }
 
 abstract class _Trait implements Trait {
-  factory _Trait(
-      {required final String name,
-      required final double percentage}) = _$TraitImpl;
+  factory _Trait({required final String name, required final int score}) =
+      _$TraitImpl;
 
   factory _Trait.fromJson(Map<String, dynamic> json) = _$TraitImpl.fromJson;
 
   @override
   String get name;
   @override
-  double get percentage;
+  int get score;
   @override
   @JsonKey(ignore: true)
   _$$TraitImplCopyWith<_$TraitImpl> get copyWith =>
