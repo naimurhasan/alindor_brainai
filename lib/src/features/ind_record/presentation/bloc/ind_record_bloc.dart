@@ -79,6 +79,7 @@ class IndRecordBloc extends Bloc<IndRecordEvent, IndRecordState> {
     emit((state as IndRecordSuccessState).copyWith(
       isGeneratingAnalysis: false,
       textAnalysisResult: TextAnalysisResult(
+        tinyTitle: "tinyTitle",
         personalityTest: 5.0,
         fullSummary: "fullSummary",
         traits: [],
