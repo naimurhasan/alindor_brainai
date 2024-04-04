@@ -4,6 +4,8 @@ import 'package:alindor_brainai/src/features/auth/presentation/bloc/authenticati
 import 'package:alindor_brainai/src/features/ind_record/domain/ind_record_repository.dart';
 import 'package:alindor_brainai/src/features/ind_record/presentation/bloc/ind_record_bloc.dart';
 import 'package:alindor_brainai/src/features/ind_record/presentation/widgets/recorded_audio_player.dart';
+import 'package:alindor_brainai/src/features/ind_record/presentation/widgets/text_analysis_result_view.dart';
+import 'package:alindor_brainai/src/features/ind_record/presentation/widgets/text_switching_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -29,10 +31,20 @@ class IndRecordBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<IndRecordBloc, IndRecordState>(
         builder: (context, state) {
+      // title text
+      String appBarTitle = "Record Something!";
+      if (state is IndRecordSuccessState && state.textAnalysisResult != null) {
+        appBarTitle = state.textAnalysisResult!.tinyTitle;
+      }
+
       return Scaffold(
         appBar: AppBar(
+          leading: const SizedBox(),
           title: AppBar(
-            title: const Text("Record Something!"),
+            title: Text(
+              appBarTitle,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
             centerTitle: true,
           ),
           actions: [
@@ -48,7 +60,7 @@ class IndRecordBody extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
           backgroundColor:
-              state is IndRecordRecordingState ? AppColors.negative : null,
+              state is IndRecordRecordingState ? AppColors.negative : AppColors.btnBorder,
           onPressed: () {
             if (state is IndRecordRecordingState) {
               context.read<IndRecordBloc>().add(IndRecordStopEvent());
@@ -90,6 +102,7 @@ class RecordSuccessStateBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // audio and speech + summary
             Container(
               padding: const EdgeInsets.all(AppSizes.padding * 2),
               decoration: BoxDecoration(
@@ -108,13 +121,19 @@ class RecordSuccessStateBody extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ] else
-                    Text(
-                      state.message,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
+                    state.textAnalysisResult == null
+                        ? Text(
+                            state.message,
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          )
+                        : TextSwitchingWidgets(
+                            text1: state.textAnalysisResult!.fullSummary,
+                            text2: state.message,
+                          ),
                 ],
               ),
             ),
+            // more details
             const SizedBox(height: AppSizes.padding * 2),
             if (state.isGeneratingAnalysis) ...[
               const CircularProgressIndicator(),
@@ -124,11 +143,11 @@ class RecordSuccessStateBody extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             ] else
-             state.textAnalysisResult == null ? SizedBox() :
-              Text(
-                state.textAnalysisResult?.toJson().toString() ?? "",
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
+              state.textAnalysisResult == null
+                  ? SizedBox()
+                  : TextAnalysisResultView(
+                    data: state.textAnalysisResult!,
+                  ),
           ],
         ),
       ),
