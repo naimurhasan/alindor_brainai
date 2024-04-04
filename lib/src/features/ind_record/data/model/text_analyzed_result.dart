@@ -1,8 +1,8 @@
 class TextAnalysisResult {
   final double personalityTest;
   final String fullSummary;
-  final List<Traits> traits;
-  final List<ReflectingQuotes> reflectingQuotes;
+  final List<Trait> traits;
+  final List<ReflectingQuote> reflectingQuotes;
 
   TextAnalysisResult(
       {required this.personalityTest,
@@ -11,15 +11,15 @@ class TextAnalysisResult {
       required this.reflectingQuotes});
 }
 
-class Traits {
+class Trait {
   final String name;
   final double percentage;
-  Traits({required this.name, required this.percentage});
+  Trait({required this.name, required this.percentage});
 }
 
-class ReflectingQuotes {
+class ReflectingQuote {
   final String topic;
   final String quote;
 
-  ReflectingQuotes({required this.topic, required this.quote});
+  ReflectingQuote({required this.topic, required this.quote});
 }
