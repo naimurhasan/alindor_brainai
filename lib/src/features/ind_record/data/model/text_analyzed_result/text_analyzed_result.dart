@@ -9,9 +9,9 @@ part 'text_analyzed_result.g.dart';
 abstract class TextAnalysisResult with _$TextAnalysisResult {
 
   const factory TextAnalysisResult({
-    @JsonKey(name: 'tiny_title') required String tinyTitle,
-    @JsonKey(name: 'personality_test')  required double personalityTest,    
-    @JsonKey(name: 'full_summary')required String fullSummary,
+    @JsonKey(name: 'tiny_title', defaultValue: "Sentiment Analysis") required String tinyTitle,
+    @JsonKey(name: 'personality_test', defaultValue: 1)  required double personalityTest,    
+    @JsonKey(name: 'full_summary', defaultValue: "")required String fullSummary,
     required List<Trait> traits,
     @JsonKey(name: 'reflecting_quotes') required List<ReflectingQuote> reflectingQuotes,
   }) = _TextAnalysisResult;

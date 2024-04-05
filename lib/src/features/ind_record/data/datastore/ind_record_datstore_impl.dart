@@ -39,13 +39,11 @@ class IndRecordDataStoreImpl implements IndRecordDataStore {
 
   @override
   Future<TextAnalysisResult> analyzePersonality(String speechText) async {
-    
-    // use demo to save api call
-    final rawArgument = "{\"personality_test\":8,\"tiny_title\":\"Exploring the Sundarbans\",\"full_summary\":\"A reflection on the awe-inspiring beauty and resilience of the Sundarbans mangrove forests.\",\"traits\":[{\"name\":\"Empathy\",\"score\":9},{\"name\":\"Optimism\",\"score\":8},{\"name\":\"Courage\",\"score\":7},{\"name\":\"Resilience\",\"score\":8},{\"name\":\"Intelligence\",\"score\":8}],\"reflecting_quotes\":[{\"topic\":\"Favorite Topics and People\",\"quote\":\"The dense mangrove forests seemed to breathe with life, each leaf whispering tales of mystery and resilience.\"},{\"topic\":\"Personal Profile\",\"quote\":\"I carried with me memories that would last a lifetime, a testament to the enduring power of nature's embrace.\"},{\"topic\":\"Less Favorite Topics and People\",\"quote\":\"Despite the challenges posed by climate change and human encroachment, the Sundarbans stood as a symbol of resilience, a sanctuary for both wildlife and the human spirit.\"}]}";
-      return TextAnalysisResult.fromJson(json.decode(rawArgument));
 
     httpClient.client.options.headers['Authorization'] =
         'Bearer ${AppEnv.openAiApiKey}';
+    httpClient.client.options.headers['content-type'] =
+        'application/json';
 
     final response = await httpClient.client
         .post('https://api.openai.com/v1/chat/completions', data: {
