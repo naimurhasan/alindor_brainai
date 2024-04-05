@@ -102,7 +102,6 @@ class RecordSuccessStateBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("${state.message}"),
             // audio and speech + summary
             Container(
               padding: const EdgeInsets.all(AppSizes.padding * 2),
