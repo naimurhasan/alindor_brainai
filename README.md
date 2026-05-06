@@ -3,6 +3,7 @@
 ## Table of Contents
 - [Preview](#preview)
 - [Features](#features)
+- [Challenge](#challenge)
 - [Project Dependency](#dependency)
 - [Project Structure](#structure)
 - [How to Setup](#setup)
@@ -36,6 +37,9 @@ You can download the latest version of the app from the following link:
 | ✔️ | Text Analysis |
 |  | UI Enhancement |
 |  | Implement firestore db  |
+
+## Challenge
+- Keeping JSON Consistent in Open AI was a challenge which has been solved via gpt function.
 
 ## State Management: BLoC
 
