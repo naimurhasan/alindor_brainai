@@ -17,7 +17,7 @@
 Download the Apk
 
 You can download the latest version of the app from the following link:
-- [Download APK]()
+- [Download APK](https://github.com/naimurhasan/alindor_brainai/releases/download/beta-0.0.1/alindor_brainai.apk)
 
 <table>
   <tr>
